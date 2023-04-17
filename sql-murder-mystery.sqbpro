@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="/Users/lin/Desktop/NEU/ITC6000/module/sql-murder-mystery.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="4282"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,18:maincrime_scene_report"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="crime_scene_report" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="61"/><column index="2" value="61"/><column index="3" value="300"/><column index="4" value="108"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">SELECT count(*)FROM person;
+SELECT count(*)FROM interview;
+SELECT count(*)FROM crime_scene_report;
+SELECT avg(age) FROM drivers_license;
+SELECT min(age) FROM drivers_license;
+SELECT max(age) FROM drivers_license;
+SELECT * FROM person LIMIT 5;
+SELECT DISTINCT type FROM crime_scene_report;
+SELECT * FROM crime_scene_report WHERE type = 'robbery' LIMIT 3;
+SELECT count (*)  FROM drivers_license 
+WHERE (age &gt; 50 AND age&lt;80) AND gender='male';
+SELECT count (*) FROM crime_scene_report
+WHERE (type='murder' or  type ='robbery');
+SELECT DISTINCT city FROM crime_scene_report WHERE city BETWEEN 'W%' AND 'Z%';
+SELECT DISTINCT city FROM crime_scene_report WHERE city like 'I%';
+SELECT name FROM person order by name LIMIT 10;
+SELECT name FROM person order by name DESC LIMIT 3;
+SELECT type, count(*) 
+FROM crime_scene_report 
+GROUP by type
+ORDER BY count(*) DESC;
+SELECT name, annual_income as income,
+gender, eye_color as eyes, hair_color as hair
+FROM income i
+JOIN person p
+  on i.ssn = p.ssn
+JOIN drivers_license dl
+  on p.license_id = dl.id
+WHERE annual_income &gt; 450000;
+SELECT *
+FROM crime_scene_report
+WHERE type = 'murder'
+AND city = 'SQL City'
+AND date =20180115;
+SELECT *
+FROM person
+WHERE address_street_name = 'Northwestern Dr'
+ORDER BY address_number DESC;
+SELECT *
+FROM person
+WHERE name like 'Annabel%'
+AND address_street_name = 'Franklin Ave';
+SELECT *
+FROM interview
+WHERE (person_id = 14887 OR person_id = 16371);
+SELECT * FROM get_fit_now_member
+WHERE id like '48Z%'
+AND membership_status = 'gold';
+SELECT person.*, drivers_license.* FROM person
+JOIN drivers_license
+ON person.license_id = drivers_license.id
+WHERE gender = 'male'
+AND plate_number like '%H42W%'</sql><current_tab id="0"/></tab_sql></sqlb_project>
